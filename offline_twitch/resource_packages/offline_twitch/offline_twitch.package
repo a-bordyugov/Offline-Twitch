@@ -1,0 +1,11 @@
+mod = [
+	"offline_twitch"
+]
+
+package = [
+	"resource_packages/offline_twitch/offline_twitch"
+]
+
+lua = [
+	"scripts/mods/offline_twitch/*"
+]
