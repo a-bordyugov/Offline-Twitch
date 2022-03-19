@@ -1,0 +1,9 @@
+.idea/.gitignore
+.idea/deployment.xml
+.idea/modules.xml
+.idea/offline_twitch.iml
+.idea/inspectionProfiles/Project_Default.xml
+.vscode/settings.json
+bundleV2/c251f7e6eed70cb7.mod_bundle
+bundleV2/offline_twitch.mod
+itemV2.cfg
