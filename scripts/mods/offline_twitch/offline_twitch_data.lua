@@ -132,50 +132,50 @@ return {
                     {
                         setting_id = 'twitch_give_first_aid_kit',
                         type = 'checkbox',
-                        title = Localize('twitch_give_first_aid_kit_one'),
-                        --tooltip = "",
+                        title = Localize('healthkit_first_aid_kit_01'),
+                        tooltip = Localize('twitch_give_first_aid_kit_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_healing_draught',
                         type = 'checkbox',
-                        title = Localize('twitch_give_healing_draught_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('potion_healing_draught_01'),
+                        tooltip = Localize('twitch_give_healing_draught_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_damage_boost_potion',
                         type = 'checkbox',
-                        title = Localize('twitch_give_damage_boost_potion_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('potion_damage_boost_01'),
+                        tooltip = Localize('twitch_give_damage_boost_potion_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_speed_boost_potion',
                         type = 'checkbox',
-                        title = Localize('twitch_give_speed_boost_potion_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('potion_speed_boost_01'),
+                        tooltip = Localize('twitch_give_speed_boost_potion_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_cooldown_reduction_potion',
                         type = 'checkbox',
-                        title = Localize('twitch_give_cooldown_reduction_potion_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('potion_cooldown_reduction_01'),
+                        tooltip = Localize('twitch_give_cooldown_reduction_potion_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_frag_grenade_t1',
                         type = 'checkbox',
-                        title = Localize('twitch_give_frag_grenade_t1_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('grenade_frag'),
+                        tooltip = Localize('twitch_give_frag_grenade_t1_one'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_give_fire_grenade_t1',
                         type = 'checkbox',
-                        title = Localize('twitch_give_fire_grenade_t1_one'),
-                        --tooltip = Localize(""),
+                        title = Localize('grenade_fire'),
+                        tooltip = Localize('twitch_give_fire_grenade_t1_one'),
                         default_value = true
                     }
                 }
@@ -265,134 +265,134 @@ return {
                     {
                         setting_id = 'twitch_spawn_rat_ogre',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_rat_ogre'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_rat_ogre'),
+                        tooltip = Localize('twitch_vote_spawn_rat_ogre'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_stormfiend',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_stormfiend'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_stormfiend'),
+                        tooltip = Localize('twitch_vote_spawn_stormfiend'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_chaos_troll',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_chaos_troll'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_troll'),
+                        tooltip = Localize('twitch_vote_spawn_chaos_troll'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_chaos_spawn',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_chaos_spawn'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_spawn'),
+                        tooltip = Localize('twitch_vote_spawn_chaos_spawn'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_minotaur',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_minotaur'),
-                        --tooltip = Localize(""),
+                        title = Localize('beastmen_minotaur'),
+                        tooltip = Localize('twitch_vote_spawn_minotaur'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_corruptor_sorcerer',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_corruptor_sorcerer'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_corruptor_sorcerer'),
+                        tooltip = Localize('twitch_vote_spawn_corruptor_sorcerer'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_vortex_sorcerer',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_vortex_sorcerer'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_vortex_sorcerer'),
+                        tooltip = Localize('twitch_vote_spawn_vortex_sorcerer'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_gutter_runner',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_gutter_runner'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_gutter_runner'),
+                        tooltip = Localize('twitch_vote_spawn_gutter_runner'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_pack_master',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_pack_master'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_pack_master'),
+                        tooltip = Localize('twitch_vote_spawn_pack_master'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_poison_wind_globadier',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_poison_wind_globadier'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_poison_wind_globadier'),
+                        tooltip = Localize('twitch_vote_spawn_poison_wind_globadier'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_ratling_gunner',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_ratling_gunner'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_ratling_gunner'),
+                        tooltip = Localize('twitch_vote_spawn_ratling_gunner'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_warpfire_thrower',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_warpfire_thrower'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_warpfire_thrower'),
+                        tooltip = Localize('twitch_vote_spawn_warpfire_thrower'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_horde_vector_blob',
                         type = 'checkbox',
                         title = Localize('twitch_vote_spawn_horde'),
-                        --tooltip = Localize(""),
+                        tooltip = Localize('morris_bay_fight_horde'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_explosive_loot_rats',
                         type = 'checkbox',
                         title = Localize('display_name_explosive_loot_rats'),
-                        --tooltip = Localize(""),
+                        tooltip = Localize('description_explosive_loot_rats'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_plague_monks',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_plague_monks'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_plague_monk'),
+                        tooltip = Localize('twitch_vote_spawn_plague_monks'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_berzerkers',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_berzerkers'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_berzerker'),
+                        tooltip = Localize('twitch_vote_spawn_berzerkers'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_death_squad_storm_vermin',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_death_squad_storm_vermin'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_storm_vermin'),
+                        tooltip = Localize('twitch_vote_spawn_death_squad_storm_vermin'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_death_squad_chaos_warrior',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_death_squad_chaos_warrior'),
-                        --tooltip = Localize(""),
+                        title = Localize('chaos_warrior'),
+                        tooltip = Localize('twitch_vote_spawn_death_squad_chaos_warrior'),
                         default_value = true
                     },
                     {
                         setting_id = 'twitch_spawn_loot_rat_fiesta',
                         type = 'checkbox',
-                        title = Localize('twitch_vote_spawn_loot_rat_fiesta'),
-                        --tooltip = Localize(""),
+                        title = Localize('skaven_loot_rat'),
+                        tooltip = Localize('twitch_vote_spawn_loot_rat_fiesta'),
                         default_value = true
                     }
                 }

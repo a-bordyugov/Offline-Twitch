@@ -13,7 +13,8 @@ mod:hook_origin(
         if address == 'irc.chat.twitch.tv' and channel_name == '#fake_twitch' then
             mod:info(mod:localize('con_irc_skip_msg'))
 
-            return cb({result = true})
+            --return cb({result = true})
+            return cb("initialize")
         end
 
         fassert(address and port, '[IRCManager] You need to provide both address and port when connecting to IRC')
@@ -34,6 +35,7 @@ mod:hook_origin(
     end
 )
 
+--[[
 mod:hook_origin(
     IRCManager,
     'unregister_message_callback',
@@ -66,3 +68,4 @@ mod:hook_origin(
         self._callback_by_type[message_type][key] = callback
     end
 )
+]]--

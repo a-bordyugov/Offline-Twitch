@@ -1,16 +1,18 @@
 return {
-    --[[
-		//Mod info
-	]] --
+	--[[
+		Mod info
+		#########################
+	--]]
     mod_description = {
         en = 'Allows you to start Twitch mode without being connected to Twitch services',
         ru = 'Позволяет запустить Твич мод без подключения к их серверам',
         zh = '允许您在不连接到Twitch服务的情况下启动Twitch模式'
     },
-     --
-    --[[
-		//Mod settings
-	]] set_tw_fow_title = {
+	--[[
+		Mod settings
+		#########################
+	--]]
+    set_tw_fow_title = {
         en = 'Enable on Fortunes of War',
         ru = 'Включить на Превратностях Войны',
         zh = ''
@@ -71,7 +73,10 @@ return {
         ru = 'Легко',
         zh = ''
     },
-    -- Section names
+	--[[
+		Section names
+		#########################
+	--]]
     otwm_tw_buffs_title = {
         en = 'Buffs',
         ru = 'Бафы',
@@ -97,10 +102,11 @@ return {
         ru = 'Пустоши Хаоса',
         zh = ''
     },
-     --
-    --[[
-		//Information which can be typed in chat
-	]] mod_disable_msg = {
+	--[[
+		Information which can be typed in chat
+		#########################
+	--]]
+    mod_disable_msg = {
         en = 'Offline Twitch mod is now disabled...',
         ru = 'Мод Offline Twitch выключен...',
         zh = ''
@@ -130,6 +136,11 @@ return {
         ru = 'Offline Twitch отключен...',
         zh = 'Offline Twitch 已禁用。。。'
     },
+    tw_destroy_ingame = {
+        en = 'Origin Twitch settings has been restored. Mod Offline Twitch is disabled now. Twitch game can be disabled in Keep.',
+        ru = 'Оригинальные настройки твича восстановлены. Мод Offline Twitch отключен. Твич можно отключить в цитадели.',
+        zh = ''
+    },
     tw_con_msg = {
         en = 'Offline Twitch is enabled now...',
         ru = 'Offline Twitch подключен...',
@@ -150,10 +161,11 @@ return {
         ru = 'Не удалось проголосовать за: %s',
         zh = '%s 投票失败'
     },
-     --
-    --[[
-		//Chat voting
-	]] cmd_vote_a_descr = {
+ 	--[[
+		Chat voting
+		#########################
+	--]]
+	cmd_vote_a_descr = {
         en = 'Vote for option A',
         ru = 'Проголосовать за вариант A',
         zh = '投票给选项 A'
