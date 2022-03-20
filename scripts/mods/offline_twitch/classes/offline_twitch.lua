@@ -1,17 +1,17 @@
-local mod = get_mod('offline_twitch')
+local mod = get_mod("offline_twitch")
 
 Offline_Twitch = class(Offline_Twitch)
 
 function Offline_Twitch:init()
     self._is_server = true
-    self._state = ''
+    self._state = ""
     self._allowed_tpl_names = {}
     self._allowed_tpl_count = 0
-    self._choosen_preset_name = mod:get('otwm_difficulty_preset')
+    self._choosen_preset_name = mod:get("otwm_difficulty_preset")
 
     self._fake_tw_data = {
-        login = '{"data":[{"id":"00000000","login":"fake_twitch","display_name":"Fake Twitch","type":"","broadcaster_type":"partner","description":"Fake Twitch prides itself in supporting rising heroes.","profile_image_url":"http://127.0.0.1/0.jpeg","offline_image_url":"http://127.0.0.1/0.jpeg","view_count":34930369,"created_at":"2012-01-15T03:18:08Z"}]}',
-        stream = '{"data":[{"id":"44980940476","user_id":"00000000","user_login":"fake_twitch","user_name":"Fake Twitch","game_id":"26936","game_name":"Music","type":"live","title":"Fake Twitch","viewer_count":239,"started_at":"2022-03-16T21:11:55Z","language":"en","thumbnail_url":"http://127.0.0.1/fake_twitch-{width}x{height}.jpg","tag_ids":["6ea6bca4-4712-4ab9-a906-e3336a9d8039","c5247b10-deec-4d7a-84a5-db6a75cb5908","d81d54c8-d705-4df6-aaf0-01d715c1dbcc","338d7a92-8bcc-429e-a30c-9f1c41a2d79a","9f1b01a8-87b9-4e25-94de-8705c1c1f4dc"],"is_mature":false}],"pagination":{}}'
+        login = "{\"data\":[{\"id\":\"00000000\",\"login\":\"fake_twitch\",\"display_name\":\"Fake Twitch\",\"type\":\"\",\"broadcaster_type\":\"partner\",\"description\":\"Fake Twitch prides itself in supporting rising heroes.\",\"profile_image_url\":\"http://127.0.0.1/0.jpeg\",\"offline_image_url\":\"http://127.0.0.1/0.jpeg\",\"view_count\":34930369,\"created_at\":\"2012-01-15T03:18:08Z\"}]}",
+        stream = "{\"data\":[{\"id\":\"44980940476\",\"user_id\":\"00000000\",\"user_login\":\"fake_twitch\",\"user_name\":\"Fake Twitch\",\"game_id\":\"26936\",\"game_name\":\"Music\",\"type\":\"live\",\"title\":\"Fake Twitch\",\"viewer_count\":239,\"started_at\":\"2022-03-16T21:11:55Z\",\"language\":\"en\",\"thumbnail_url\":\"http://127.0.0.1/fake_twitch-{width}x{height}.jpg\",\"tag_ids\":[\"6ea6bca4-4712-4ab9-a906-e3336a9d8039\",\"c5247b10-deec-4d7a-84a5-db6a75cb5908\",\"d81d54c8-d705-4df6-aaf0-01d715c1dbcc\",\"338d7a92-8bcc-429e-a30c-9f1c41a2d79a\",\"9f1b01a8-87b9-4e25-94de-8705c1c1f4dc\"],\"is_mature\":false}],\"pagination\":{}}"
     }
 
     --[[
@@ -411,7 +411,7 @@ end
     #########################
 --]]
 function Offline_Twitch:__destroy()
-    self:tw_update_settings('normal')
+    self:tw_update_settings("normal")
 
     TwitchVoteTemplates = self._tpl_origin_data.TwitchVoteTemplates.data
     TwitchVoteTemplatesLookup = self._tpl_origin_data.TwitchVoteTemplatesLookup.data
@@ -435,8 +435,8 @@ function Offline_Twitch:__destroy()
     self._tpl_origin_data.TwitchSpecialsSpawnBreedNamesLookup.data = {}
     self._tpl_origin_data.TwitchVoteWhitelists.data = {}
 
-    if (self._state == 'ingame') then
-        mod:echo(mod:localize('tw_destroy_ingame'))
+    if (self._state == "ingame") then
+        mod:echo(mod:localize("tw_destroy_ingame"))
         return
     end
 
@@ -452,7 +452,7 @@ function Offline_Twitch:__disconnect()
 
     if (twitch_manager._connected and twitch_manager._twitch_game_mode) then
         Managers.twitch = TwitchManager:new()
-        mod:echo(mod:localize('tw_ds_msg'))
+        mod:echo(mod:localize("tw_ds_msg"))
     end
 end
 
@@ -465,14 +465,14 @@ function Offline_Twitch:__on_change(event)
         return
     end
 
-    if (event[1] == 'loaded' or event[1] == 'enabled') then
+    if (event[1] == "loaded" or event[1] == "enabled") then
         self:tpl_clone()
         self:tpl_update_allowed()
         self:tpl_modify_origin()
-        self:game_update_settings('tw_settings')
-    elseif (event[1] == 'settings') then
-        local game_settings_update_required = {'otwm_fow_enabled', 'otwm_weaves_enabled'}
-        local tw_settings_update_required = {'otwm_difficulty_preset'}
+        self:game_update_settings("tw_settings")
+    elseif (event[1] == "settings") then
+        local game_settings_update_required = {"otwm_fow_enabled", "otwm_weaves_enabled"}
+        local tw_settings_update_required = {"otwm_difficulty_preset"}
 
         if (table.contains(game_settings_update_required, event[2])) then
             self:game_update_settings(event[2])
@@ -482,7 +482,7 @@ function Offline_Twitch:__on_change(event)
             self:tpl_update_allowed()
             self:tpl_modify_origin()
         end
-    elseif (event[1] == 'unload' or event[1] == 'disabled') then
+    elseif (event[1] == "unload" or event[1] == "disabled") then
         self:__destroy()
     end
 end
@@ -515,8 +515,8 @@ function Offline_Twitch:tpl_clone() --
         @param multiple_choice|boolean?
         ---
         @return %TwitchVoteTemplateName|table
-    ]] self._tpl_origin_data.TwitchVoteTemplates.data =
-        TwitchVoteTemplates
+    ]]
+    self._tpl_origin_data.TwitchVoteTemplates.data = TwitchVoteTemplates
     --
 
     --[[
@@ -529,8 +529,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchVoteTemplatesLookup.data =
-        TwitchVoteTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchVoteTemplatesLookup.data = TwitchVoteTemplatesLookup
     --
 
     --[[
@@ -543,8 +543,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchMultipleChoiceVoteTemplatesLookup.data =
-        TwitchMultipleChoiceVoteTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchMultipleChoiceVoteTemplatesLookup.data = TwitchMultipleChoiceVoteTemplatesLookup
     --
 
     --[[
@@ -570,8 +570,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchStandardVoteTemplatesLookup.data =
-        TwitchStandardVoteTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchStandardVoteTemplatesLookup.data = TwitchStandardVoteTemplatesLookup
     --
 
     --[[
@@ -584,8 +584,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchPositiveVoteTemplatesLookup.data =
-        TwitchPositiveVoteTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchPositiveVoteTemplatesLookup.data = TwitchPositiveVoteTemplatesLookup
     --
 
     --[[
@@ -598,8 +598,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchNegativeVoteTemplatesLookup.data =
-        TwitchNegativeVoteTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchNegativeVoteTemplatesLookup.data = TwitchNegativeVoteTemplatesLookup
     --
 
     --[[
@@ -612,8 +612,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchBossEquivalentSpawnTemplatesLookup.data =
-        TwitchBossEquivalentSpawnTemplatesLookup
+    ]]
+    self._tpl_origin_data.TwitchBossEquivalentSpawnTemplatesLookup.data = TwitchBossEquivalentSpawnTemplatesLookup
     --
 
     --[[
@@ -633,8 +633,8 @@ function Offline_Twitch:tpl_clone() --
         @param condition_func|function?
         ---
         @return %TwitchVoteTemplateName|table
-    ]] self._tpl_origin_data.TwitchBossesSpawnBreedNamesLookup.data =
-        TwitchBossesSpawnBreedNamesLookup
+    ]]
+    self._tpl_origin_data.TwitchBossesSpawnBreedNamesLookup.data = TwitchBossesSpawnBreedNamesLookup
     --
 
     --[[
@@ -653,8 +653,8 @@ function Offline_Twitch:tpl_clone() --
         @param breed_name|string?
         ---
         @return %TwitchVoteTemplateName|table
-    ]] self._tpl_origin_data.TwitchSpecialsSpawnBreedNamesLookup.data =
-        TwitchSpecialsSpawnBreedNamesLookup
+    ]]
+    self._tpl_origin_data.TwitchSpecialsSpawnBreedNamesLookup.data = TwitchSpecialsSpawnBreedNamesLookup
     --
 
     --[[
@@ -667,8 +667,8 @@ function Offline_Twitch:tpl_clone() --
         @param %TwitchVoteTemplateName|string
         ---
         @return %TwitchVoteTemplateName|string
-    ]] self._tpl_origin_data.TwitchVoteWhitelists.data =
-        TwitchVoteWhitelists
+    ]]
+    self._tpl_origin_data.TwitchVoteWhitelists.data = TwitchVoteWhitelists
 end
 
 --[[
@@ -680,17 +680,6 @@ function Offline_Twitch:tpl_modify_origin()
     self:unset_current_vote()
 
     for a_name, a_content in pairs(self._tpl_origin_data) do
-
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("*******************" .. a_name .. "************************")
-        mod:echo("***********************************************************")
-        mod:dump(_G[a_name], nil, 3)
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-
         local tmp_data = {}
 
         if (a_content.is_hashed) then
@@ -699,7 +688,7 @@ function Offline_Twitch:tpl_modify_origin()
                     tmp_data[b_name] = b_data
                 end
             end
-        elseif (a_name == 'TwitchVoteWhitelists') then
+        elseif (a_name == "TwitchVoteWhitelists") then
             tmp_data = {map_deus = {}, deus = {}}
 
             if (#a_content.data.map_deus) then
@@ -726,16 +715,6 @@ function Offline_Twitch:tpl_modify_origin()
         end
 
         _G[a_name] = tmp_data
-
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("*******************" .. a_name .. "************************")
-        mod:echo("***********************************************************")
-        mod:dump(_G[a_name], nil, 3)
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
-        mod:echo("***********************************************************")
     end
 end
 
@@ -744,7 +723,7 @@ end
     #########################
 --]]
 function Offline_Twitch:unset_current_vote()
-    local tw_manager, current_vote = Managers.twitch, Managers.twitch._current_vote
+    --[[local tw_manager, current_vote = Managers.twitch, Managers.twitch._current_vote
 
     if (self._is_server and current_vote) then
         if Managers.state and Managers.state.event then
@@ -752,7 +731,7 @@ function Offline_Twitch:unset_current_vote()
         end
 
         tw_manager:unregister_vote(current_vote.vote_key)
-    end
+    end--]]
 end
 
 --[[
@@ -769,7 +748,7 @@ function Offline_Twitch:tpl_update_cost()
             for b_name, b_data in pairs(a_data) do
                 local cost = _G[b_name].cost
                 local new_cost = self._presets[self._choosen_preset_name].cost[b_name]
-                    
+
                 if (cost) then
                     cost = new_cost
                 end
@@ -783,9 +762,9 @@ end
     #########################
 --]]
 function Offline_Twitch:tpl_update_allowed()
-    local unwanted_options = {'otwm_difficulty_preset', 'otwm_weaves_enabled', 'otwm_fow_enabled'}
+    local unwanted_options = {"otwm_difficulty_preset", "otwm_weaves_enabled", "otwm_fow_enabled"}
     local settings = Application.user_setting()
-          settings = settings.mods_settings.offline_twitch
+    settings = settings.mods_settings.offline_twitch
 
     self._allowed_tpl_count = 0
     self._allowed_tpl_names = {}
@@ -804,7 +783,7 @@ function Offline_Twitch:tpl_update_allowed()
     end
 
     -- Updating used votes counting condition
-    if (self._allowed_tpl_count % 2 == 0) then
+    --[[    if (self._allowed_tpl_count % 2 == 0) then
         self._NUM_ROUNDS_TO_DISABLE_USED_VOTES = self._allowed_tpl_count / 2
         self._MIN_VOTES_LEFT_IN_ROTATION = 2
     else
@@ -818,6 +797,7 @@ function Offline_Twitch:tpl_update_allowed()
     elseif (self._NUM_ROUNDS_TO_DISABLE_USED_VOTES < 1) then
         self._NUM_ROUNDS_TO_DISABLE_USED_VOTES = 1
     end
+    --]]
 end
 
 --[[
@@ -846,10 +826,18 @@ end
     #########################
 --]]
 function Offline_Twitch:game_update_settings(event)
-    if (event == 'tw_settings') then
-        Application.set_user_setting('twitch_disable_positive_votes', 'enable_positive_votes')
-        Application.set_user_setting('twitch_disable_mutators', false)
+    if (event == "tw_settings") then
+        Application.set_user_setting("twitch_disable_positive_votes", "enable_positive_votes")
+        Application.set_user_setting("twitch_disable_mutators", false)
     end
+end
+
+--[[
+    Calculate max diff cost
+    #########################
+--]]
+function Offline_Twitch:calc_max_diff()
+
 end
 
 --[[
