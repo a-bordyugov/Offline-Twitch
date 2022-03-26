@@ -234,7 +234,7 @@ function Offline_Twitch:init()
                 funds = 0,
                 max_diff = 200,
                 max_vote_cost_diff = 100,
-                init_time = 60
+                init_time = 30
             },
             cost = {
                 -- Items giving
