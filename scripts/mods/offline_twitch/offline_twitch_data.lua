@@ -19,6 +19,12 @@ return {
                 tooltip = "set_tw_weaves_descr",
                 default_value = true
             }, {
+                setting_id = "otwm_cw_enabled",
+                type = "checkbox",
+                title = "set_tw_cw_title",
+                tooltip = "set_tw_cw_descr",
+                default_value = true
+            }, {
                 setting_id = "otwm_difficulty_preset",
                 type = "dropdown",
                 title = "set_tw_difficulty_preset_title",
@@ -341,108 +347,6 @@ return {
                         type = "checkbox",
                         title = Localize("skaven_loot_rat"),
                         tooltip = Localize("twitch_vote_spawn_loot_rat_fiesta"),
-                        default_value = true
-                    }
-                }
-            }, {
-                setting_id = "otwm_tw_chaos_wastes",
-                type = "group",
-                title = "otwm_tw_chaos_wastes_title",
-                sub_widgets = {
-                    {
-                        setting_id = "twitch_vote_deus_select_level_arena_citadel",
-                        type = "checkbox",
-                        title = Localize("arena_citadel_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_arena_ruin",
-                        type = "checkbox",
-                        title = Localize("arena_ruin_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_arena_cave",
-                        type = "checkbox",
-                        title = Localize("arena_cave_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_arena_ice",
-                        type = "checkbox",
-                        title = Localize("arena_ice_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_mountain",
-                        type = "checkbox",
-                        title = Localize("pat_mountain_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_forest",
-                        type = "checkbox",
-                        title = Localize("pat_forest_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_mines",
-                        type = "checkbox",
-                        title = Localize("pat_mines_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_tower",
-                        type = "checkbox",
-                        title = Localize("pat_tower_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_town",
-                        type = "checkbox",
-                        title = Localize("pat_town_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_pat_bay",
-                        type = "checkbox",
-                        title = Localize("pat_bay_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_volcano",
-                        type = "checkbox",
-                        title = Localize("sig_volcano_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_citadel",
-                        type = "checkbox",
-                        title = Localize("sig_citadel_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_mordrek",
-                        type = "checkbox",
-                        title = Localize("sig_mordrek_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_gorge",
-                        type = "checkbox",
-                        title = Localize("sig_gorge_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_snare",
-                        type = "checkbox",
-                        title = Localize("sig_snare_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_sig_crag",
-                        type = "checkbox",
-                        title = Localize("sig_crag_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_shop_harmony",
-                        type = "checkbox",
-                        title = Localize("shop_harmony_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_shop_fortune",
-                        type = "checkbox",
-                        title = Localize("shop_fortune_title"),
-                        default_value = true
-                    }, {
-                        setting_id = "twitch_vote_deus_select_level_shop_strife",
-                        type = "checkbox",
-                        title = Localize("shop_strife_title"),
                         default_value = true
                     }
                 }

@@ -9,6 +9,9 @@ dofile("scripts/mods/offline_twitch/hooks/managers/irc")
 dofile("scripts/mods/offline_twitch/hooks/managers/twitch")
 
 -- UI
+dofile("scripts/mods/offline_twitch/hooks/ui/hud/vote_ui")
+dofile("scripts/mods/offline_twitch/hooks/ui/views/deus_map_decision_view")
+dofile("scripts/mods/offline_twitch/hooks/ui/views/ingame_ui")
 dofile("scripts/mods/offline_twitch/hooks/ui/legacy")
 dofile("scripts/mods/offline_twitch/hooks/ui/unified")
 
@@ -24,17 +27,12 @@ function mod.on_all_mods_loaded()
     TW_Tweaker:__on_change({"loaded"})
 end
 
---[[
 function mod.on_enabled()
-    twTweak:_on_change({"enabled"})
+    TW_Tweaker:__on_change({"enabled"})
 end
---]]
-function mod.on_game_state_changed(status, state_name)
-    if (status == "exit" and state_name == "StateLoading") then
-        -- TW_Tweaker._is_server = Managers.state.network and Managers.state.network.is_server
-        mod:echo("IS SERVER:")
-        mod:echo(TW_Tweaker._is_server)
-    end
+
+function mod.on_game_state_changed()
+    TW_Tweaker:__on_change({"game_state_changed"})
 end
 
 function mod.on_setting_changed(setting_name)
