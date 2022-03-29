@@ -15,18 +15,14 @@ return {
     set_tw_fow_title = {
         en = "Enable on Fortunes of War",
         ru = "Включить в Превратностях Войны",
-        zh = "战争财富可用"
+        zh = "战争财富"
     },
     set_tw_fow_descr = {
         en = "Enable Twitch integration on Fortunes of War",
         ru = "Разрешает использование Твича на секретной карте \"Превратности Войны\"",
         zh = "启动战争财富TW"
     },
-    set_tw_weaves_title = {
-        en = "Enable on Weaves",
-        ru = "Включить в \"Cплетениях\"",
-        zh = "魔网可用"
-    },
+    set_tw_weaves_title = {en = "Enable on Weaves", ru = "Включить в \"Cплетениях\"", zh = "魔网"},
     set_tw_weaves_descr = {
         en = "Enable Twitch integration on Weaves(I am not sure you want it)",
         ru = "Разрешает использование Твича в режиме \"Сплетений\"(Для любителей жесткого обращения с собой)",
@@ -35,13 +31,46 @@ return {
     set_tw_cw_title = {
         en = "Enable on Chaos Wastes",
         ru = "Включить в \"Пустошах Хаоса\"",
-        zh = "混沌荒原可用"
+        zh = "混沌荒原"
     },
     set_tw_cw_descr = {
         en = "Enable votes on \"Holseher's map\"",
         ru = "Включает голосования на \"Карте Хольсгера\"",
         zh = "启用地图自主选择"
     },
+    set_tw_vote_percentage_skip_title = {
+        en = "Skip current voting",
+        ru = "Пропуск текущего голосования",
+        zh = "跳过当前投票"
+    },
+    set_tw_vote_percentage_skip_descr = {
+        en = [[
+Players can vote to skip the current twitch vote.
+To do this, send a command to the chat: (#skip or #SKIP) or (#tws or #TWS).
+
+There are 2 options available:
+">= 50" - Voting will be skipped if the percentage of voters is EQUAL or GREATER than 50
+"> 50" - Voting will be skipped if the percentage of voters EXCEEDS 50
+        ]],
+        ru = [[
+Игроки могут проголосовать за пропуск текущего твич голосования.
+Для этого необходимо отправить команду в чат: (#skip или #SKIP) или (#tws или #TWS).
+
+Доступно 2 опции:
+">= 50" - Голосование будет пропущено если процент проголосовавших РАВЕН или ПРЕВЫШАЕТ 50
+"> 50" - Голосование будет пропущено если процент проголосовавших ПРЕВЫШАЕТ 50
+        ]],
+        zh = [[
+玩家可以通过投票来跳过TW投票:
+首先，需要在聊天框中输入：(#skip 或 #SKIP) 或者 (#tws 或 #TWS).
+
+有两种选项供选择：
+">=50" 如果投票结果大于或等于百分之五十投票将被跳过
+">50" 如果投票结果大于百分之五十投票将被跳过
+        ]]
+    },
+    set_tw_vote_skip_greater_than_50 = {en = "> 50"},
+    set_tw_vote_skip_equal_50 = {en = ">= 50"},
     set_tw_difficulty_preset_title = {
         en = "Difficulty presets",
         ru = "Пресеты сложности",
@@ -49,31 +78,22 @@ return {
     },
     set_tw_difficulty_preset_descr = {
         en = [[
-Difficulty settings for sampling Twitch votes.
-The "Normal" option restores the settings that were set by the game developers.
------------
-Very hard: Positive votes have low priority. Most often you will get: curses, bosses, etc.
-Hard: Positive votes have medium-low priority.
+Difficulty settings for game choosing Twitch votes.
+
+Hard: Positive votes have low priority. Most often you will get: curses, bosses, etc.
 Normal: Positive and negative votes are balanced by the game developers.
-Easy: Positive votes have a high priority. Most often you will get: first-aid kits, potions, etc.
         ]],
         ru = [[
 Настройки сложности для выборки голосований Твича.
-Опция "Нормально" восстанавливает настройки, которые были установлены разработчиками игры.
------------
-Очень сложно: Положительные голосования имеют низкий приоритет. Чаще всего вам будут выпадать: проклятья, боссы и т.п.
-Сложно: Положительные голосования имеют средне-низкий приоритет.
+
+Сложно: Положительные голосования имеют низкий приоритет. Чаще всего вам будут выпадать: проклятья, боссы и т.п.
 Нормально: Положительные и негативные голосования сбалансированы разработчиками игры.
-Легко: Положительные голосования имеют высокий приоритет. Чаще всего вам будут выпадать: аптечки, зелья и т.п.
 		]],
         zh = [[
 为您的TW设置难度.
-“正常选项”是官服的TW难度, 是官方游戏设计师设计的TW难度.
------------
-“非常困难”: 这个难度下基本不会出现祝福，你会不停的受到诅咒，特感的贴贴，和来自怪物的关爱.
-“困难”: 这个难度下诅咒会是大概率事件，祝福会很少出现.
+
+“困难”: 这个难度下基本不会出现祝福，你会不停的受到诅咒，特感的贴贴，和来自怪物的关爱.
 “正常”: 这是一个诅咒和祝福平均出现的难度 (和开祝福的官服TW一个难度).
-“新手”: (西格玛正注视着你，快去战斗吧!) 祝福事件概率大幅度上升.
         ]]
     },
     set_tw_difficulty_preset_descr_hardest = {en = "Very hard", ru = "Очень сложно", zh = "非常困难"},

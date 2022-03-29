@@ -1,7 +1,7 @@
 local mod = get_mod("offline_twitch")
 
 --[[
-    Sorry, you can't change this
+    It's can be changed only from VMF menu
     #########################
 --]]
 mod:hook_safe(OptionsView, "apply_changes", function(self)

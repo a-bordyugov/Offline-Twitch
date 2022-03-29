@@ -11,6 +11,8 @@ function Offline_Twitch:init()
     self._allowed_tpl_names = {}
     self._allowed_tpl_count = 0
     self._choosen_preset_name = "normal"
+    self._players_voted_skip = {}
+    self._tw_user_settings_backup = {}
 
     self._fake_tw_data = {
         login = "{\"data\":[{\"id\":\"00000000\",\"login\":\"fake_twitch\",\"display_name\":\"Fake Twitch\",\"type\":\"\",\"broadcaster_type\":\"partner\",\"description\":\"Fake Twitch prides itself in supporting rising heroes.\",\"profile_image_url\":\"http://127.0.0.1/0.jpeg\",\"offline_image_url\":\"http://127.0.0.1/0.jpeg\",\"view_count\":34930369,\"created_at\":\"2012-01-15T03:18:08Z\"}]}",
@@ -54,34 +56,34 @@ function Offline_Twitch:init()
             tw_settings = {
                 max_negative = -300,
                 max_positive = 300,
-                funds = 300,
-                max_diff = 300,
-                max_vote_cost_diff = 250,
+                funds = 0,
+                max_diff = 90,
+                max_vote_cost_diff = 150,
                 init_time = 10
             },
             cost = {
                 -- Items giving
-                twitch_give_cooldown_reduction_potion = -100,
-                twitch_give_damage_boost_potion = -100,
-                twitch_give_speed_boost_potion = -100,
-                twitch_give_fire_grenade_t1 = -100,
-                twitch_give_frag_grenade_t1 = -100,
-                twitch_give_healing_draught = -100,
-                twitch_give_first_aid_kit = -100,
+                twitch_give_cooldown_reduction_potion = -150,
+                twitch_give_damage_boost_potion = -150,
+                twitch_give_speed_boost_potion = -150,
+                twitch_give_fire_grenade_t1 = -150,
+                twitch_give_frag_grenade_t1 = -150,
+                twitch_give_healing_draught = -150,
+                twitch_give_first_aid_kit = -150,
                 -- Buffs
-                twitch_add_cooldown_potion_buff = -300,
-                twitch_add_damage_potion_buff = -300,
-                twitch_add_speed_potion_buff = -300,
-                twitch_vote_critical_strikes = -300,
+                twitch_add_cooldown_potion_buff = -150,
+                twitch_add_damage_potion_buff = -150,
+                twitch_add_speed_potion_buff = -150,
+                twitch_vote_critical_strikes = -150,
                 twitch_vote_activate_root_all = 100,
-                twitch_vote_infinite_bombs = -300,
-                twitch_vote_invincibility = -300,
-                twitch_vote_activate_root = 50,
-                twitch_vote_full_temp_hp = -300,
-                twitch_vote_hemmoraghe = 100,
-                twitch_no_overcharge_no_ammo_reloads = -300,
-                twitch_grimoire_health_debuff = 100,
-                twitch_health_regen = -300,
+                twitch_vote_infinite_bombs = -150,
+                twitch_vote_invincibility = -150,
+                twitch_vote_activate_root = 100,
+                twitch_vote_full_temp_hp = -150,
+                twitch_vote_hemmoraghe = 50,
+                twitch_no_overcharge_no_ammo_reloads = -150,
+                twitch_grimoire_health_debuff = 50,
+                twitch_health_regen = -150,
                 twitch_health_degen = 50,
                 -- Spawning
                 twitch_spawn_chaos_spawn = 50,
@@ -104,36 +106,36 @@ function Offline_Twitch:init()
                 twitch_spawn_horde_vector_blob = 50,
                 twitch_spawn_loot_rat_fiesta = 0,
                 -- Mutators
-                twitch_vote_activate_splitting_enemies = 200,
-                twitch_vote_activate_lightning_strike = 100,
+                twitch_vote_activate_splitting_enemies = 50,
+                twitch_vote_activate_lightning_strike = 50,
                 twitch_vote_activate_chasing_spirits = 50,
-                twitch_vote_activate_slayer_curse = -200,
-                twitch_vote_activate_ticking_bomb = 100,
-                twitch_vote_activate_bloodlust = -200,
-                twitch_vote_activate_darkness = 200,
-                twitch_vote_activate_realism = 100,
-                twitch_vote_activate_flames = 100,
+                twitch_vote_activate_slayer_curse = -150,
+                twitch_vote_activate_ticking_bomb = 50,
+                twitch_vote_activate_bloodlust = -150,
+                twitch_vote_activate_darkness = 50,
+                twitch_vote_activate_realism = 50,
+                twitch_vote_activate_flames = 50,
                 twitch_vote_activate_leash = 50,
                 -- Chaos Wastes maps and shops
-                twitch_vote_deus_select_level_arena_citadel = 200,
-                twitch_vote_deus_select_level_arena_ruin = 200,
-                twitch_vote_deus_select_level_arena_cave = 200,
-                twitch_vote_deus_select_level_arena_ice = 200,
-                twitch_vote_deus_select_level_pat_mountain = 200,
-                twitch_vote_deus_select_level_pat_forest = 200,
-                twitch_vote_deus_select_level_pat_mines = 200,
-                twitch_vote_deus_select_level_pat_tower = 200,
-                twitch_vote_deus_select_level_pat_town = 200,
-                twitch_vote_deus_select_level_pat_bay = 200,
-                twitch_vote_deus_select_level_sig_volcano = 200,
-                twitch_vote_deus_select_level_sig_citadel = 200,
-                twitch_vote_deus_select_level_sig_mordrek = 200,
-                twitch_vote_deus_select_level_sig_gorge = 200,
-                twitch_vote_deus_select_level_sig_snare = 200,
-                twitch_vote_deus_select_level_sig_crag = 200,
-                twitch_vote_deus_select_level_shop_harmony = 200,
-                twitch_vote_deus_select_level_shop_fortune = 200,
-                twitch_vote_deus_select_level_shop_strife = 200
+                twitch_vote_deus_select_level_arena_citadel = -150,
+                twitch_vote_deus_select_level_arena_ruin = -150,
+                twitch_vote_deus_select_level_arena_cave = -150,
+                twitch_vote_deus_select_level_arena_ice = -150,
+                twitch_vote_deus_select_level_pat_mountain = -150,
+                twitch_vote_deus_select_level_pat_forest = -150,
+                twitch_vote_deus_select_level_pat_mines = -150,
+                twitch_vote_deus_select_level_pat_tower = -150,
+                twitch_vote_deus_select_level_pat_town = -150,
+                twitch_vote_deus_select_level_pat_bay = -150,
+                twitch_vote_deus_select_level_sig_volcano = -150,
+                twitch_vote_deus_select_level_sig_citadel = -150,
+                twitch_vote_deus_select_level_sig_mordrek = -150,
+                twitch_vote_deus_select_level_sig_gorge = -150,
+                twitch_vote_deus_select_level_sig_snare = -150,
+                twitch_vote_deus_select_level_sig_crag = -150,
+                twitch_vote_deus_select_level_shop_harmony = -150,
+                twitch_vote_deus_select_level_shop_fortune = -150,
+                twitch_vote_deus_select_level_shop_strife = -150
             }
         },
         --[[
@@ -226,96 +228,6 @@ function Offline_Twitch:init()
                 twitch_vote_deus_select_level_shop_strife = 0
             }
         },
-        --[[
-            Difficulty for a little heroes
-            #########################
-        --]]
-        easy = {
-            tw_settings = {
-                max_negative = -300,
-                max_positive = 300,
-                funds = -250,
-                max_diff = 150,
-                max_vote_cost_diff = 100,
-                init_time = 60
-            },
-            cost = {
-                -- Items giving
-                twitch_give_cooldown_reduction_potion = 0,
-                twitch_give_damage_boost_potion = 0,
-                twitch_give_speed_boost_potion = 0,
-                twitch_give_fire_grenade_t1 = 0,
-                twitch_give_frag_grenade_t1 = 0,
-                twitch_give_healing_draught = 0,
-                twitch_give_first_aid_kit = 0,
-                -- Buffs
-                twitch_add_cooldown_potion_buff = -250,
-                twitch_add_damage_potion_buff = -250,
-                twitch_add_speed_potion_buff = -250,
-                twitch_vote_critical_strikes = -100,
-                twitch_vote_activate_root_all = 250,
-                twitch_vote_infinite_bombs = 0,
-                twitch_vote_invincibility = 0,
-                twitch_vote_activate_root = 50,
-                twitch_vote_full_temp_hp = 0,
-                twitch_vote_hemmoraghe = 100,
-                twitch_no_overcharge_no_ammo_reloads = -250,
-                twitch_grimoire_health_debuff = 150,
-                twitch_health_regen = -100,
-                twitch_health_degen = 200,
-                -- Spawning
-                twitch_spawn_chaos_spawn = 250,
-                twitch_spawn_chaos_troll = 250,
-                twitch_spawn_stormfiend = 250,
-                twitch_spawn_minotaur = 250,
-                twitch_spawn_rat_ogre = 250,
-                twitch_spawn_death_squad_chaos_warrior = 250,
-                twitch_spawn_death_squad_storm_vermin = 250,
-                twitch_spawn_plague_monks = 120,
-                twitch_spawn_berzerkers = 120,
-                twitch_spawn_poison_wind_globadier = 150,
-                twitch_spawn_explosive_loot_rats = 150,
-                twitch_spawn_corruptor_sorcerer = 200,
-                twitch_spawn_warpfire_thrower = 150,
-                twitch_spawn_vortex_sorcerer = 150,
-                twitch_spawn_ratling_gunner = 150,
-                twitch_spawn_gutter_runner = 250,
-                twitch_spawn_pack_master = 250,
-                twitch_spawn_horde_vector_blob = 50,
-                twitch_spawn_loot_rat_fiesta = 0,
-                -- Mutators
-                twitch_vote_activate_splitting_enemies = 200,
-                twitch_vote_activate_lightning_strike = 200,
-                twitch_vote_activate_chasing_spirits = 200,
-                twitch_vote_activate_slayer_curse = 250,
-                twitch_vote_activate_ticking_bomb = 50,
-                twitch_vote_activate_bloodlust = 200,
-                twitch_vote_activate_darkness = 300,
-                twitch_vote_activate_realism = 200,
-                twitch_vote_activate_flames = 250,
-                twitch_vote_activate_leash = 200,
-                -- Chaos Wastes maps and shops
-                twitch_vote_deus_select_level_arena_citadel = 0,
-                twitch_vote_deus_select_level_arena_ruin = 0,
-                twitch_vote_deus_select_level_arena_cave = 0,
-                twitch_vote_deus_select_level_arena_ice = 0,
-                twitch_vote_deus_select_level_pat_mountain = 0,
-                twitch_vote_deus_select_level_pat_forest = 0,
-                twitch_vote_deus_select_level_pat_mines = 0,
-                twitch_vote_deus_select_level_pat_tower = 0,
-                twitch_vote_deus_select_level_pat_town = 0,
-                twitch_vote_deus_select_level_pat_bay = 0,
-                twitch_vote_deus_select_level_sig_volcano = 0,
-                twitch_vote_deus_select_level_sig_citadel = 0,
-                twitch_vote_deus_select_level_sig_mordrek = 0,
-                twitch_vote_deus_select_level_sig_gorge = 0,
-                twitch_vote_deus_select_level_sig_snare = 0,
-                twitch_vote_deus_select_level_sig_crag = 0,
-                twitch_vote_deus_select_level_shop_harmony = 0,
-                twitch_vote_deus_select_level_shop_fortune = 0,
-                twitch_vote_deus_select_level_shop_strife = 0
-            }
-        }
     }
 end
 
@@ -347,6 +259,11 @@ function Offline_Twitch:__destroy()
     self._tpl_origin_data.TwitchVoteWhitelists.data = {}
 
     self._initialized = false
+
+    Application.set_user_setting("twitch_disable_positive_votes", self._tw_user_settings_backup.twitch_disable_positive_votes)
+    Application.set_user_setting("twitch_disable_mutators", self._tw_user_settings_backup.twitch_disable_mutators)
+
+    self._tw_user_settings_backup = {}
 
     if (self._state == "ingame") then
         mod:echo(mod:localize("tw_destroy_ingame"))
@@ -399,12 +316,15 @@ function Offline_Twitch:__on_change(event)
 
     elseif (event[1] == "settings") then
 
-        local skip_update = {"otwm_fow_enabled", "otwm_cw_enabled", "otwm_weaves_enabled"}
+        local skip_update = {"otwm_fow_enabled", "otwm_cw_enabled", "otwm_weaves_enabled", "otwm_vote_percentage_skip"}
         local tw_settings_update_required = {"otwm_difficulty_preset"}
 
         if (table.contains(skip_update, event[2])) then
             return
         elseif (table.contains(tw_settings_update_required, event[2])) then
+            -- Update difficulty preset
+            self._choosen_preset_name = mod:get("otwm_difficulty_preset")
+
             -- Unset current voting
             self:unset_current_vote()
 
@@ -440,6 +360,9 @@ function Offline_Twitch:__on_change(event)
         if (not self._initialized) then
             return
         end
+
+        -- Unset current voting
+        self:unset_current_vote()
 
         self:__destroy()
 
@@ -635,7 +558,7 @@ end
     #########################
 --]]
 function Offline_Twitch:tpl_update_allowed()
-    local unwanted_options = {"otwm_difficulty_preset", "otwm_cw_enabled", "otwm_weaves_enabled", "otwm_fow_enabled"}
+    local unwanted_options = {"otwm_difficulty_preset", "otwm_cw_enabled", "otwm_weaves_enabled", "otwm_fow_enabled", "otwm_vote_percentage_skip"}
     local settings = Application.user_setting()
     settings = settings.mods_settings.offline_twitch
 
@@ -671,7 +594,7 @@ function Offline_Twitch:tpl_update_allowed()
             -- Updating the number of allowed Twitch templates
             self._allowed_tpl_count = self._allowed_tpl_count + 1
 
-            -- Creating a list with allowed Twitch votes
+            -- Creating list with allowed Twitch votes
             self._allowed_tpl_names[a_name] = true
         end
     end
@@ -693,7 +616,7 @@ function Offline_Twitch:tpl_update_allowed()
 end
 
 --[[
-    Replacing templates with custom ones
+    Replacing original vote templates with custom ones
     #########################
 --]]
 function Offline_Twitch:tpl_modify_origin()
@@ -739,32 +662,6 @@ end
 --[[
     Unset current vote
     #########################
-    [4] = table
-    [show_vote_ui] = true (boolean)
-    [vote_key] = 4 (number)
-    [cb] = [function]
-    [user_names] = table
-    [vote_templates] = table
-        [1] = twitch_give_healing_draught (string)
-        [2] = twitch_give_healing_draught (string)
-        [3] = twitch_give_healing_draught (string)
-        [4] = twitch_give_healing_draught (string)
-        [5] = twitch_give_healing_draught (string)
-    [vote_type] = multiple_choice (string)
-    [activated] = true (boolean)
-    [timer] = 0.74052944965660572 (number)
-    [option_strings] = table
-        [1] = #a (string)
-        [2] = #b (string)
-        [3] = #c (string)
-        [4] = #d (string)
-        [5] = #e (string)
-    [options] = table
-        [1] = 0 (number)
-        [2] = 0 (number)
-        [3] = 0 (number)
-        [4] = 0 (number)
-        [5] = 0 (number)
 --]]
 function Offline_Twitch:unset_current_vote()
     local tw_manager = Managers.twitch
@@ -783,16 +680,27 @@ function Offline_Twitch:unset_current_vote()
 end
 
 --[[
+    Updating Twitch settings
     Updating costs values for votes
     #########################
 --]]
-function Offline_Twitch:tpl_update_cost(preset_name)
+function Offline_Twitch:tw_update_settings(preset_name)
+    --[[
     if (not preset_name) then
-        preset_name = mod:get("otwm_difficulty_preset")
-        self._choosen_preset_name = preset_name
+        preset_name = self._choosen_preset_name
     end
 
-    -- Updating costs
+    -- Updating Twitch Settings
+    local tw_settings = self._presets[preset_name].tw_settings
+
+    TwitchSettings.cutoff_for_guaranteed_negative_vote = tw_settings.max_negative
+    TwitchSettings.cutoff_for_guaranteed_positive_vote = tw_settings.max_positive
+    TwitchSettings.initial_downtime = tw_settings.init_time
+    TwitchSettings.starting_funds = tw_settings.funds
+    TwitchSettings.max_diff = tw_settings.max_diff
+    TwitchSettings.max_a_b_vote_cost_diff = tw_settings.max_vote_cost_diff
+
+    -- Updating votes cost
     for a_name, a_data in pairs(self._tpl_origin_data) do
         if (a_data.is_hashed) then
             local TMP = _G[a_name]
@@ -808,31 +716,7 @@ function Offline_Twitch:tpl_update_cost(preset_name)
 
             _G[a_name] = TMP
         end
-    end
-end
-
---[[
-    Updating Twitch settings
-    #########################
---]]
-function Offline_Twitch:tw_update_settings(preset_name)
-    if (not preset_name) then
-        preset_name = mod:get("otwm_difficulty_preset")
-        self._choosen_preset_name = preset_name
-    end
-
-    -- Updating Twitch Settings
-    local tw_settings = self._presets[preset_name].tw_settings
-
-    TwitchSettings.cutoff_for_guaranteed_negative_vote = tw_settings.max_negative
-    TwitchSettings.cutoff_for_guaranteed_positive_vote = tw_settings.max_positive
-    TwitchSettings.initial_downtime = tw_settings.init_time
-    TwitchSettings.starting_funds = tw_settings.funds
-    TwitchSettings.max_diff = tw_settings.max_diff
-    TwitchSettings.max_a_b_vote_cost_diff = tw_settings.max_vote_cost_diff
-
-    -- Updating votes cost
-    self:tpl_update_cost(preset_name)
+    end]]--
 end
 
 --[[
@@ -841,18 +725,26 @@ end
 --]]
 function Offline_Twitch:game_update_settings(event)
     if (event == "tw_settings") then
+        if (self:is_table_empty(self._tw_user_settings_backup)) then
+            self._tw_user_settings_backup["twitch_disable_positive_votes"] = Application.user_setting(
+                                                                                 "twitch_disable_positive_votes")
+            self._tw_user_settings_backup["twitch_disable_mutators"] = Application.user_setting(
+                                                                           "twitch_disable_mutators")
+        end
+
         Application.set_user_setting("twitch_disable_positive_votes", "enable_positive_votes")
         Application.set_user_setting("twitch_disable_mutators", false)
     end
 end
 
 --[[
-    Add vote if someone give it in chat
+    Voting from game chat
     #########################
 --]]
 function Offline_Twitch:add_vote(message)
     local vote_key = nil
 
+    -- Looking for current vote key
     for _, vote_data in pairs(Managers.twitch._votes_lookup_table) do
         if (vote_data.activated) then
             vote_key = vote_data["vote_key"]
@@ -863,6 +755,7 @@ function Offline_Twitch:add_vote(message)
         return
     end
 
+    -- Add user vote to current TW vote
     local vote_data = Managers.twitch._votes_lookup_table[vote_key]
 
     for idx, option_string in ipairs(vote_data.option_strings) do
@@ -871,6 +764,34 @@ function Offline_Twitch:add_vote(message)
 
             break
         end
+    end
+end
+
+--[[
+    Skip current vote from game chat
+    #########################
+--]]
+function Offline_Twitch:skip_vote(message_sender)
+    local players_voted = self._players_voted_skip
+    local players_num = Managers.state.network:lobby():members():get_member_count()
+    local skip_allowed = false
+    local votes_percentage = nil
+    local skip_allowed_percentage = mod:get("otwm_vote_percentage_skip")
+
+    if (not table.contains(players_voted, message_sender)) then
+        table.insert(players_voted, message_sender)
+    end
+
+    votes_percentage = (#players_voted * 100 / players_num)
+
+    if (skip_allowed_percentage == "50more" and votes_percentage > 50) then
+        skip_allowed = true
+    elseif (skip_allowed_percentage == "50" and votes_percentage >= 50) then
+        skip_allowed = true
+    end
+
+    if (skip_allowed) then
+        self:unset_current_vote()
     end
 end
 

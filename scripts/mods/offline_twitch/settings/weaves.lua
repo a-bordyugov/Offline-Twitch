@@ -1,6 +1,7 @@
 local mod = get_mod("offline_twitch")
 
 --[[
+	Enable/Disable Twitch mode in Weaves
     Prevent to show any message about unsupported Twitch mode in weaves
     #########################
 --]]

@@ -1,7 +1,7 @@
 local mod = get_mod("offline_twitch")
 
 --[[
-    Twitch Pause/Unpause
+    Twitch Pause/Unpause when VMF menu is open
     #########################
 --]]
 mod:hook_origin(TwitchGameMode, "update", function(self, dt, t)
@@ -23,6 +23,20 @@ mod:hook_origin(TwitchGameMode, "update", function(self, dt, t)
 end)
 
 --[[
+    Enable/Disable Twitch votes on Holseher's map
+    #########################
+--]]
+mod:hook_origin(TwitchManager, "is_connected", function(self)
+    local level_key = Managers.level_transition_handler:get_current_level_keys()
+
+    if (TW_Tweaker._is_server and level_key == "dlc_morris_map" and not mod:get("otwm_cw_enabled")) then
+        return false
+    end
+
+    return self._connected
+end)
+
+--[[
     Fixing an issue when game can not disconnect from Twitch if user used a fake connection
     #########################
 --]]
@@ -33,7 +47,7 @@ mod:hook_safe(TwitchManager, "disconnect", function(self)
 end)
 
 --[[
-    Fixing an issue when game got an infinite loop if it can not find a second template for vote because of Mod Tweaks
+    Fixing an issue when game got an infinite loop if it can not find a second template
     #########################
 --]]
 mod:hook_origin(TwitchGameMode, "_next_standard_vote", function(self, template_a)
@@ -96,6 +110,19 @@ mod:hook_origin(TwitchGameMode, "_next_standard_vote", function(self, template_a
     local vote_templates = {template_a.name, best_template.name}
 
     return "standard_vote", vote_templates, nil
+end)
+
+--[[
+    Unlock twitch breed packages to avoid game crash
+    #########################
+--]]
+mod:hook_safe(TwitchManager, "_unload_sound_bank", function(self)
+    local locked_breeds = self.locked_breed_packages
+
+    for a_name, _ in pairs(locked_breeds) do
+        Managers.level_transition_handler.enemy_package_loader:unlock_breed_package(a_name)
+        locked_breeds[a_name] = nil
+    end
 end)
 
 --[[

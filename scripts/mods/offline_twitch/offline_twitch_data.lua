@@ -25,18 +25,26 @@ return {
                 tooltip = "set_tw_cw_descr",
                 default_value = true
             }, {
+                setting_id = "otwm_vote_percentage_skip",
+                type = "dropdown",
+                title = "set_tw_vote_percentage_skip_title",
+                tooltip = "set_tw_vote_percentage_skip_descr",
+                default_value = "50more",
+                options = {
+                    {text = "set_tw_vote_skip_greater_than_50", value = "50more"},
+                    {text = "set_tw_vote_skip_equal_50", value = "50"}
+                }
+            }, --[[{
                 setting_id = "otwm_difficulty_preset",
                 type = "dropdown",
                 title = "set_tw_difficulty_preset_title",
                 tooltip = "set_tw_difficulty_preset_descr",
                 default_value = "normal",
                 options = {
-                    {text = "set_tw_difficulty_preset_descr_hardest", value = "hardest"},
                     {text = "set_tw_difficulty_preset_descr_hard", value = "hard"},
                     {text = "set_tw_difficulty_preset_descr_normal", value = "normal"},
-                    {text = "set_tw_difficulty_preset_descr_easy", value = "easy"}
                 }
-            }, {
+            },--]] {
                 setting_id = "otwm_tw_buffs",
                 type = "group",
                 title = "otwm_tw_buffs_title",

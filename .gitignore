@@ -7,3 +7,5 @@
 bundleV2/c251f7e6eed70cb7.mod_bundle
 bundleV2/offline_twitch.mod
 itemV2.cfg
+.vscode/launch.json
+.gitignore

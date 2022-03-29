@@ -7,16 +7,12 @@ dofile("scripts/mods/offline_twitch/classes/offline_twitch")
 dofile("scripts/mods/offline_twitch/hooks/managers/curl")
 dofile("scripts/mods/offline_twitch/hooks/managers/irc")
 dofile("scripts/mods/offline_twitch/hooks/managers/twitch")
+dofile("scripts/mods/offline_twitch/hooks/managers/chat")
 
 -- UI
 dofile("scripts/mods/offline_twitch/hooks/ui/hud/vote_ui")
-dofile("scripts/mods/offline_twitch/hooks/ui/views/deus_map_decision_view")
 dofile("scripts/mods/offline_twitch/hooks/ui/views/ingame_ui")
-dofile("scripts/mods/offline_twitch/hooks/ui/legacy")
-dofile("scripts/mods/offline_twitch/hooks/ui/unified")
-
--- Voting
-dofile("scripts/mods/offline_twitch/hooks/vote/chat")
+dofile("scripts/mods/offline_twitch/hooks/ui/autofill_username")
 
 -- Settings
 dofile("scripts/mods/offline_twitch/settings/fow")
