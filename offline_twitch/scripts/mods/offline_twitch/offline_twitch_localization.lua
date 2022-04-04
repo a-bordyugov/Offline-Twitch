@@ -31,7 +31,7 @@ return {
     set_tw_weaves_descr = {
         en = "Enable Twitch integration on Weaves(I am not sure you want it)",
         ru = "Разрешает использование Твича в режиме \"Сплетений\"(Для любителей жесткого обращения с собой)",
-        zh = "魔网TW已开启(打不过去找青蛙带吧)"
+        zh = "开启魔网TW(打不过就去找青蛙带你吧)"
     },
     set_tw_cw_title = {
         en = "Enable on Chaos Wastes",
@@ -76,35 +76,6 @@ There are 2 options available:
     },
     set_tw_vote_skip_greater_than_50 = {en = "> 50"},
     set_tw_vote_skip_equal_50 = {en = ">= 50"},
-    set_tw_difficulty_preset_title = {
-        en = "Difficulty presets",
-        ru = "Пресеты сложности",
-        zh = "难度设置"
-    },
-    set_tw_difficulty_preset_descr = {
-        en = [[
-Difficulty settings for game choosing Twitch votes.
-
-Hard: Positive votes have low priority. Most often you will get: curses, bosses, etc.
-Normal: Positive and negative votes are balanced by the game developers.
-        ]],
-        ru = [[
-Настройки сложности для выборки голосований Твича.
-
-Сложно: Положительные голосования имеют низкий приоритет. Чаще всего вам будут выпадать: проклятья, боссы и т.п.
-Нормально: Положительные и негативные голосования сбалансированы разработчиками игры.
-		]],
-        zh = [[
-为您的TW设置难度.
-
-“困难”: 这个难度下基本不会出现祝福，你会不停的受到诅咒，特感的贴贴，和来自怪物的关爱.
-“正常”: 这是一个诅咒和祝福平均出现的难度 (和开祝福的官服TW一个难度).
-        ]]
-    },
-    set_tw_difficulty_preset_descr_hardest = {en = "Very hard", ru = "Очень сложно", zh = "非常困难"},
-    set_tw_difficulty_preset_descr_hard = {en = "Hard", ru = "Сложно", zh = "困难"},
-    set_tw_difficulty_preset_descr_normal = {en = "Normal", ru = "Нормально", zh = "正常"},
-    set_tw_difficulty_preset_descr_easy = {en = "Easy", ru = "Легко", zh = "新手"},
     --[[
 		Section names
 		#########################

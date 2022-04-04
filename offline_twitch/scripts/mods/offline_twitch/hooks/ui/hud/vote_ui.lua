@@ -11,7 +11,7 @@ mod:hook_safe(TwitchVoteUI, "event_reset_vote_ui", function(self)
     end
 
     -- Unlock twitch breed packages to avoid game crash
-    local locked_breeds = self.locked_breed_packages
+    local locked_breeds = Managers.twitch.locked_breed_packages
 
     for a_name, _ in pairs(locked_breeds) do
         Managers.level_transition_handler.enemy_package_loader:unlock_breed_package(a_name)

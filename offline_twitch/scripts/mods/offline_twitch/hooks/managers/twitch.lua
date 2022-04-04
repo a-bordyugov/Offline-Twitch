@@ -222,6 +222,7 @@ mod:hook_origin(TwitchManager, "register_vote",
     end
 
     if not self._current_vote then
+        TW_Tweaker._players_voted_skip = {}
         self:_activate_next_vote()
     end
 
