@@ -5,7 +5,7 @@ local mod = get_mod("offline_twitch")
     #########################
 --]]
 mod:hook_safe(StateInGameRunning, "_game_actually_starts", function(self)
-	if (Managers.twitch) then
+	if (Managers.twitch:is_connected() or Managers.twitch:is_activated()) then
 		local level_key = Managers.level_transition_handler:get_current_level_keys()
 
         if (level_key == "plaza" and mod:get("otwm_fow_enabled")) then

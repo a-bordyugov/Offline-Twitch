@@ -5,7 +5,7 @@ local mod = get_mod("offline_twitch")
     #########################
 --]]
 mod:hook_safe("ChatManager", "_add_message_to_list", function(self, channel_id, message_sender, local_player_id, message, is_system_message, pop_chat, is_dev, message_type, link, data)
-    if (not IS_WINDOWS or is_system_message or not TW_Tweaker._is_server) then
+    if (not IS_WINDOWS or is_system_message) then
 		return
 	end
 
