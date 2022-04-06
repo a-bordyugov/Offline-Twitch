@@ -5,11 +5,5 @@ local mod = get_mod("offline_twitch")
     #########################
 --]]
 mod:hook_safe(IngameUI, "post_update", function(self)
-    local current_view = self.current_view
-
-    if (current_view == "vmf_options_view") then
-        TW_Tweaker._is_tw_paused = true
-    else
-        TW_Tweaker._is_tw_paused = false
-    end
+    TW_Tweaker._is_tw_paused = (self.current_view == "vmf_options_view")
 end)
