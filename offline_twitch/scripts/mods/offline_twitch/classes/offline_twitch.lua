@@ -4,7 +4,6 @@ Offline_Twitch = class(Offline_Twitch)
 
 function Offline_Twitch:init()
     self._is_tw_paused = false
-    self._initialized = false
     self._is_server = false
     self._prevent_loop = false
     self._hooks_available = true
@@ -23,7 +22,7 @@ function Offline_Twitch:init()
     self._NUM_ROUNDS_TO_DISABLE_USED_VOTES = 15
     self._MIN_VOTES_LEFT_IN_ROTATION = 2
 
-    -- Contains origin vote templates
+    -- Contains user changed vote templates
     self._tpl_list = {
         TwitchVoteTemplates = {is_hashed = true, data = {}},
         TwitchVoteTemplatesLookup = {is_hashed = false, data = {}},
@@ -53,8 +52,6 @@ function Offline_Twitch:__destroy()
     self._tpl_list.TwitchBossesSpawnBreedNamesLookup.data = {}
     self._tpl_list.TwitchSpecialsSpawnBreedNamesLookup.data = {}
     self._tpl_list.TwitchVoteWhitelists.data = {}
-
-    self._initialized = false
 
     Application.set_user_setting("twitch_disable_positive_votes",
                                  self._tw_user_settings_backup.twitch_disable_positive_votes)
@@ -93,10 +90,6 @@ function Offline_Twitch:__on_change(event)
 
     if (event[1] == "loaded" or event[1] == "enabled") then
 
-        if (self._initialized or not self._is_server) then
-            return
-        end
-
         -- Unset current voting
         self:unset_current_vote()
 
@@ -107,24 +100,12 @@ function Offline_Twitch:__on_change(event)
         -- Update settings
         self:game_update_settings("tw_settings")
 
-        self._initialized = true
-
     elseif (event[1] == "settings") then
 
-        if (not self._is_server) then
-            return
-        end
-
         local skip_update = {"otwm_fow_enabled", "otwm_cw_enabled", "otwm_weaves_enabled", "otwm_vote_percentage_skip"}
-        local tw_settings_update_required = {"otwm_difficulty_preset"}
 
         if (table.contains(skip_update, event[2])) then
             return
-        elseif (table.contains(tw_settings_update_required, event[2])) then
-
-            -- Unset current voting
-            self:unset_current_vote()
-
         else
             -- Unset current voting
             self:unset_current_vote()
@@ -132,7 +113,6 @@ function Offline_Twitch:__on_change(event)
             -- Work with vote templates
             self:tpl_update_allowed()
             self:tpl_modify()
-
         end
 
     elseif (event[1] == "game_state_changed") then
@@ -147,7 +127,7 @@ function Offline_Twitch:__on_change(event)
             self._state = "ingame"
         end
 
-        -- Disable/Enable hooks if client
+        -- Disable/Enable hooks
         if (not self._is_server) then
             if (self._hooks_available) then
                 mod:disable_all_hooks()
@@ -162,10 +142,6 @@ function Offline_Twitch:__on_change(event)
         end
 
     elseif (event[1] == "unload" or event[1] == "disabled") then
-
-        if (not self._initialized) then
-            return
-        end
 
         -- Unset current voting
         self:unset_current_vote()
@@ -476,7 +452,7 @@ end
     #########################
 --]]
 function Offline_Twitch:unset_current_vote()
-    if (not self._is_server) then
+    if (not self._is_server or self._state ~= "ingame" or not Managers.twitch:is_activated()) then
         return
     end
 
@@ -522,14 +498,7 @@ function Offline_Twitch:add_vote(message)
         return
     end
 
-    local vote_key = nil
-
-    -- Looking for current vote key
-    for _, vote_data in pairs(Managers.twitch._votes_lookup_table) do
-        if (vote_data.activated) then
-            vote_key = vote_data["vote_key"]
-        end
-    end
+    local vote_key = self:get_tw_active_vote_key()
 
     if (not vote_key) then
         mod:chat_broadcast(mod:localize("chat_vote_denied"))
@@ -561,6 +530,14 @@ function Offline_Twitch:skip_vote(message_sender)
         return
     end
 
+    local vote_available = self:get_tw_active_vote_key()
+
+    if (not vote_available) then
+        mod:chat_broadcast(mod:localize("chat_vote_denied"))
+
+        return
+    end
+
     local players_voted = self._players_voted_skip
     local players_num = Managers.state.network:lobby():members():get_member_count()
     local skip_allowed = false
@@ -575,6 +552,10 @@ function Offline_Twitch:skip_vote(message_sender)
     votes_percentage = (#players_voted * 100 / players_num)
     skip_votes_min = math.ceil(players_num / 2)
 
+    if (skip_votes_min == 1) then
+        skip_votes_min = 2
+    end
+
     if (skip_allowed_percentage == "50more" and votes_percentage > 50) then
         skip_allowed = true
     elseif (skip_allowed_percentage == "50" and votes_percentage >= 50) then
@@ -586,6 +567,23 @@ function Offline_Twitch:skip_vote(message_sender)
     else
         mod:chat_broadcast(mod:localize("vote_skip_info", #players_voted, players_num, skip_votes_min))
     end
+end
+
+--[[
+    Function: TW active vote key
+    #########################
+--]]
+function Offline_Twitch:get_tw_active_vote_key()
+    local vote_key = nil
+
+    -- Looking for current vote key
+    for _, vote_data in pairs(Managers.twitch._votes_lookup_table) do
+        if (vote_data.activated) then
+            vote_key = vote_data["vote_key"]
+        end
+    end
+
+    return vote_key
 end
 
 --[[
