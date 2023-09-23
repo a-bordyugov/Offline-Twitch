@@ -4,6 +4,7 @@ local mod = get_mod("offline_twitch")
     Use custom TW templates
     #########################
 --]]
+
 mod:hook_origin(TwitchGameMode, "_next_standard_vote", function(self, template_a)
     local used_vote_templates = self._used_vote_templates
     local template_a_name = template_a.name
@@ -15,7 +16,7 @@ mod:hook_origin(TwitchGameMode, "_next_standard_vote", function(self, template_a
     local best_template = nil
     local best_diff = math.huge
 
-    for i = 1, #templates, 1 do
+    for i = 1, #templates do
         local template_b_name = templates[i]
 
         if template_a_name ~= template_b_name and not used_vote_templates[template_b_name] then
@@ -81,7 +82,7 @@ mod:hook_origin(TwitchGameMode, "_get_next_vote", function(self)
 
 		local best_diff = -math.huge
 
-		for i = 1, #templates, 1 do
+		for i = 1, #templates do
 			local template_name = templates[i]
 
 			if not used_vote_templates[template_name] then
@@ -107,7 +108,7 @@ mod:hook_origin(TwitchGameMode, "_get_next_vote", function(self)
 
 		local best_diff = math.huge
 
-		for i = 1, #templates, 1 do
+		for i = 1, #templates do
 			local template_name = templates[i]
 
 			if not used_vote_templates[template_name] then
@@ -133,7 +134,7 @@ mod:hook_origin(TwitchGameMode, "_get_next_vote", function(self)
 
 		table.shuffle(templates)
 
-		for i = 1, #templates, 1 do
+		for i = 1, #templates do
 			local template_name = templates[i]
 
 			if not used_vote_templates[template_name] then
@@ -231,7 +232,7 @@ end)
 
 -- #########################
 mod:hook_origin(TwitchGameMode, "cb_on_vote_complete", function(self, current_vote)
-	Managers.telemetry.events:twitch_poll_completed(current_vote)
+	Managers.telemetry_events:twitch_poll_completed(current_vote)
 
 	local winning_template = TwitchVoteTemplates[current_vote.winning_template_name]
 	self._funds = self._funds + winning_template.cost
